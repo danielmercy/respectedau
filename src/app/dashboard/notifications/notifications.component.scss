@@ -1,0 +1,19 @@
+.notes {
+    padding: 12px;
+}
+
+
+
+mat-card-header {
+    /deep/ .mat-card-header-text {
+        margin: 0;
+    }
+
+    mat-card-title{
+        margin: 0;
+    } 
+}
+
+mat-card {
+    margin-bottom: 24px;
+}

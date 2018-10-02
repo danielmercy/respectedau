@@ -1,0 +1,107 @@
+@import '../shared/shared.scss';
+
+// Header nav, logo, and avatar styles
+.nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 0;
+
+    &.mobile {
+        display: none;
+        opacity: 0;
+        transition: all 5s ease;
+    }
+
+    .flex-spacer {
+        flex: 1 1 auto;
+    }
+
+    .logo {
+        width: 122px;
+        height: 55px;
+        background: url('../../assets/images/rauLogo.svg') no-repeat;
+        display: inline-block;
+        align-self: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    ul {
+        margin: auto;
+        margin-right: $base-gap;
+        li {
+            list-style: none;
+            margin: 12px;
+            float: left;
+            text-align: center;
+
+            a {
+                text-decoration: none;
+                color: $accent;
+                text-transform: uppercase;
+                font-size: 12px;
+
+                &:hover {
+                    color: adjust-hue($color: $accent, $degrees: -10)
+                }
+            }
+        }
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        background: url('../../assets/images/person-circle.svg') no-repeat;
+        display: inline-block;
+        align-self: center;
+    }
+}
+
+.mobile-menu {
+    background: rgba($base-colr, .3);
+    display: none;
+    &.hidden {
+        height: 0;
+        overflow: hidden;
+        transition: height .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    &.visible {
+        height: 240px;
+        overflow: hidden;
+        transition: height .5s ease-out;
+    }
+    mat-nav-list {
+        padding: 0;
+
+        .mat-list-item {
+            color: $accent;
+        }
+    }
+}
+
+// Make the header navigation bar responsive.
+@media screen and (max-width: 831px) {
+    .nav.desktop {
+        display: none;
+        opacity: 0;
+    }
+
+    ul.menu {
+        display: none;
+        opacity: 0;
+        transition: all 5s ease;
+    }
+
+    .nav.mobile {
+        display: flex;
+        opacity: 1;
+        transition: all 5s ease;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+}

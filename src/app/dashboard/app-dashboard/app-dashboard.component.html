@@ -1,0 +1,95 @@
+<div class="grid-container">
+    <mat-card class="dashboard-card" dense>
+        <mat-card-header>
+            <img matCardAvatar [src]="client?.photoURL">
+            <mat-card-title>
+                {{client?.displayName}}
+                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item>Expand</button>
+                    <button mat-menu-item>Remove</button>
+                </mat-menu>
+            </mat-card-title>
+            <mat-card-subtitle>{{client?.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            <div fxLayout.xs="column" fxLayout.sm="row" fxLayout.md="row" fxLayoutAlign="space-around center" style="padding: 12px 0">
+                <div class="circle1">
+                    <h4>Payment <b>0%</b> completed</h4>
+                    <circle-progress
+                        [percent]="0"
+                        [radius]="60"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#ff8888'"
+                        [innerStrokeColor]="'#fdbdbd'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                    ></circle-progress>
+                </div>
+                <div class="circle2">
+                    <h4>Profile <b>85%</b> completed</h4>
+                    <circle-progress
+                        [percent]="85"
+                        [radius]="100"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#78C000'"
+                        [innerStrokeColor]="'#c7e596'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                    ></circle-progress>
+                </div>
+                <div class="circle2">
+                    <h4>Activty <b>1%</b></h4>
+                    <circle-progress
+                        [percent]="1"
+                        [radius]="80"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#ff8f00'"
+                        [innerStrokeColor]="'#fddc9f'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                    ></circle-progress>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="sub-cards" fxLayout.xs="column" fxLayout.sm="row" fxLayout.md="row" fxLayoutAlign="center center" fxLayoutGap="24px">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title><b style="color: #ff8888; text-transform: uppercase">Starter Payment   &nbsp;&nbsp;&nbsp;<i><span>(not paid)</span></i></b> </mat-card-title>
+            </mat-card-header>
+            <img matCardImage src="../../../assets/images/pay.png">
+            <mat-card-content>
+                <h5 style="margin: 2px; font-weight: bold;">NOTE: By filling the payment form you've agreed to pay a total amount of $500 USD which is not refundable</h5>
+                <p style="padding: 0 11px">Now that you have registered, this is where you sort out your subscription, setting up your subscription doesn't take long and you do it from here it only requires some few steps to completed.</p>
+                <ul>
+                    <li>Click the make payment button</li>
+                    <li>Check your mail for the payment form link</li>
+                    <li>Fill in the information required</li>
+                    <li>Payment complete</li>
+                </ul>
+
+                <button mat-raised-button (click)="devMode()" color="primary">Make payment request</button>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title><b style="color: #ff8888; text-transform: uppercase">Personalize settings</b></mat-card-title>
+            </mat-card-header>
+            <img matCardImage src="../../../assets/images/settings.svg">
+            <mat-card-content>
+                <p style="padding: 0 11px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor quae qui modi cupiditate rerum reprehenderit nostrum, deserunt ipsum similique neque doloremque nobis, a ratione magni optio, cumque error vitae delectus.</p>
+
+                <button mat-raised-button routerLink="/dashboard/settings" color="primary">View settings</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

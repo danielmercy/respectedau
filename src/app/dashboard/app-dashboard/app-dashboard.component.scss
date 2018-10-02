@@ -1,0 +1,29 @@
+.grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    // width: 100%;
+
+    mat-card-title, mat-card-subtitle {
+      margin: 0;
+    }
+  }
+
+  .sub-cards {
+    padding-top: 24px;
+
+    mat-card {
+      width: 50%;
+    }
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 22px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }

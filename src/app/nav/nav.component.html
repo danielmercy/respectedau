@@ -1,0 +1,72 @@
+<div class="nav desktop">
+    <div class="logo" routerLink="/"></div>
+    <span class="flex-spacer"></span>
+    <ul class="menu" *ngIf="!client">
+        <li><a routerLink='/services'>Services</a></li>
+        <li><a routerLink="/testimonies">Testimonies</a></li>
+        <li><a routerLink="/auth/registration">Become an AU</a></li>
+        <li><a routerLink="/contactus">Contact Us</a></li>
+        <li><a routerLink="/auth/login">Login</a></li>
+    </ul>
+
+    <ul class="menu" *ngIf="client">
+        <li><a routerLink='/dashboard'>Dashboard</a></li>
+        <li><a routerLink='/services'>Services</a></li>
+        <li><a routerLink="/testimonies">Testimonies</a></li>
+        <li><a routerLink="/contactus">Contact Us</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+    </ul>
+
+    <div *ngIf="client; then authenticated else guest"></div>
+</div>
+<div class="nav mobile">
+    <a id="menu-btn" mat-icon-button style="align-self: center;" #menuBtn>
+        <mat-icon class="mat-18">menu</mat-icon>
+    </a>
+    <span class="flex-spacer"></span>
+    <div class="logo" routerLink="/"></div>
+    <span class="flex-spacer"></span> 
+    <div *ngIf="client; then authenticated else guest"></div>
+
+</div>
+<div class="mobile-menu hidden" #mobileNav>
+    <mat-nav-list dense *ngIf="!client">
+        <a mat-list-item routerLink="/">Home</a>
+        <a mat-list-item routerLink="/services">Our Services</a>
+        <a mat-list-item routerLink="/testimonies">Testimonies</a>
+        <a mat-list-item routerLink="/contactus">Contact Us</a>
+        <a mat-list-item routerLink="/auth/login">Login</a>
+        <a mat-list-item routerLink="/auth/registration">Become an AU</a>
+    </mat-nav-list>
+
+    <mat-nav-list dense *ngIf="client">
+        <a mat-list-item routerLink="/">Home</a>
+        <a mat-list-item routerLink="/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/services">Our Services</a>
+        <a mat-list-item routerLink="/testimonies">Testimonies</a>
+        <a mat-list-item routerLink="/contactus">Contact Us</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+    </mat-nav-list>
+</div>
+
+<ng-template #guest>
+    <a mat-icon-button style="align-self: center; color: #ff8888" [matMenuTriggerFor]="menuRef">
+        <mat-icon class="mat-18">account_circle</mat-icon>
+    </a>
+    
+    <mat-menu #menuRef="matMenu" x-position="after" y-position="below" [overlapTrigger]="false" dense>
+        <button mat-menu-item routerLink="/auth/login">Login</button>
+        <button mat-menu-item routerLink="/auth/registration">Become an au</button>
+    </mat-menu>
+</ng-template>
+
+<ng-template #authenticated>
+    <a mat-icon-button style="align-self: center; color: #ff8888" [matMenuTriggerFor]="menuRef">
+        <img [src]="client?.photoURL" width="40px" height="40px" style="border-radius: 50%">
+    </a>
+    
+    <mat-menu #menuRef="matMenu" x-position="after" y-position="below" [overlapTrigger]="false" dense>
+        <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+</ng-template>

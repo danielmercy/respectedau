@@ -1,0 +1,68 @@
+@import '../shared/shared.scss';
+
+header {
+    background: url('../../assets/images/use-testimony_blurred.jpg');
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $primary;
+}
+
+
+
+section#testimony1 {
+    .container {
+        .flex {
+            padding: 6rem 0 0 0;
+            .image {
+                background: url('../../assets/images/AuPairs.jpg') no-repeat;
+                background-position: center;
+                background-size: cover;
+            
+            }
+        }
+    }
+}
+
+section#testimony2 {
+    .container {
+        .flex {
+
+            .image {
+                background: url('../../assets/images/task-force.jpg') no-repeat;
+                background-position: center center;
+                background-size: cover;
+            
+            }
+        }
+    }
+}
+
+section#testimony3 {
+    .container {
+        .flex {
+
+            .image {
+                background: url('../../assets/images/issaquah.jpg') no-repeat;
+                background-position: center center;
+                background-size: cover;
+            
+            }
+        }
+    }
+}
+
+section#testimony4 {
+    .container {
+        .flex {
+
+            .image {
+                background: url('../../assets/images/accomplishment-achievement-adults-1059118.jpg') no-repeat;
+                background-position: center center;
+                background-size: cover;
+            
+            }
+        }
+    }
+}

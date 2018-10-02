@@ -1,0 +1,48 @@
+@import '../shared/shared.scss';
+
+header {
+    background: url('../../assets/images/landing-page_blurred.jpg');
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $primary;
+}
+
+
+
+section#services {
+    .container {
+        .flex {
+            padding: 6rem 0 8rem 0 !important;
+
+            .image {
+                background: url('../../assets/images/use-services.jpg');
+                background-position: center center;
+                background-size: cover;
+            
+            }
+        }
+    }
+}
+
+section#testimonies {
+    background: $accent;
+    color: $base-colr;
+    .container {
+        .flex {
+            padding: 4rem 0;
+
+            .image {
+                background: url('../../assets/images/use-testimony.jpg');
+                background-position: center center;
+                background-size: cover;
+            
+            }
+        }
+    }
+
+    .stroke {
+        background: $base-colr;
+    }
+}

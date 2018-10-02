@@ -1,0 +1,77 @@
+<mat-drawer-container class="sidenav-container">
+    <mat-drawer
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [attr.role]="isHandset ? 'dialog' : 'navigation'"
+      [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
+      [opened]="!(isHandset | async)!.matches">
+      <div class="nav header" fxLayout="column">
+          <button mat-icon-button (click)="drawer.close()" [disabled]="!isHandset">
+              <mat-icon class="mat-18">arrow_back</mat-icon>
+          </button>
+          <div style="padding-top: 12px">
+            <img [src]="client?.photoURL" alt="" width='60px' height="60px" style="border-radius: 50%; border: 2px solid white; box-shadow: -4px 1px 0px rgba(0,0,0,0.3)">
+          </div>
+          <h5 style="margin: 0;" class="username">{{client?.email}}</h5>
+      </div>
+      <mat-nav-list dense>
+        <a mat-list-item routerLink="/dashboard" (click)="closeOnNav()" color="primary"><mat-icon class="matNavIcon">dashboard</mat-icon>&nbsp;&nbsp;  Dashboard</a>
+        <a mat-list-item routerLink="/dashboard/account" (click)="closeOnNav()"><mat-icon class="matNavIcon">person</mat-icon>&nbsp;&nbsp; Account</a>
+        <a mat-list-item routerLink="/dashboard/messages" (click)="closeOnNav()"><mat-icon class="matNavIcon">message</mat-icon>&nbsp;&nbsp; Messages</a>
+        <a mat-list-item routerLink="/dashboard/settings" (click)="closeOnNav()"><mat-icon class="matNavIcon">settings</mat-icon>&nbsp;&nbsp; Settings</a>
+      </mat-nav-list>
+      <button mat-button (click)="signOut()" color="primary" style="position: absolute; bottom: 0; width: 100%">
+        <mat-icon class="mat-18">backspace</mat-icon>
+        Logout
+      </button>
+    </mat-drawer>
+    <mat-drawer
+      #notifications
+      class="sidenav notifications"
+      fixedInViewport="true"
+      attr.role="notifications drawer"
+      mode="push"
+      position="end">
+      
+      <div class="notify header" fxLayout="column">
+          <button mat-icon-button (click)="notifications.close()" [disabled]="!isHandset">
+              <mat-icon class="mat-18">arrow_forwards</mat-icon>
+          </button>
+          <h3 style="margin: 0;">Notifications</h3>
+      </div>
+
+      <app-notifications></app-notifications>
+    </mat-drawer>
+    <mat-drawer-content>
+      <header>
+        <mat-toolbar color="primary" class="toolbar">
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="(isHandset | async)!.matches">
+            <mat-icon aria-label="side nav toggle icon">menu</mat-icon>
+          </button>
+          <span>Dashboard</span>
+          <span class="space"></span>
+          <button mat-icon-button routerLink="/" matTooltip="Exit Dashboard" matTooltipPosition="below">
+              <mat-icon class="mat-18">arrow_back</mat-icon>
+          </button>
+          <button mat-icon-button (click)="notifications.toggle()" matTooltip="Notifications" matTooltipPosition="below">
+              <mat-icon class="mat-18">notifications</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Messages" matTooltipPosition="below">
+              <mat-icon class="mat-18">message</mat-icon>
+              
+          </button>
+        </mat-toolbar>
+      </header>
+  
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  

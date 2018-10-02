@@ -1,0 +1,147 @@
+<div class="banner">
+  <h3>Account Settings</h3>
+  <p>Personalize your account, Delete, Cancel and Save changes to account</p>
+</div>
+
+<div class="image" style="background: white url(../../../assets/images/person.svg)">
+    <input type="file" accept="image/*" (change)="photoChange($event)" #fileInput hidden>
+    <button mat-raised-button color="primary" (click)="fileInput.click()" *ngIf="!file">
+        <mat-icon class="mat-18">photo</mat-icon>
+        Add Photo
+    </button>
+    <button mat-fab (click)="fileInput.click()" *ngIf="file" color="primary" matTooltip="change image" aria-label="change image button">
+        <mat-icon class="mat-18">input</mat-icon>
+    </button> 
+</div>
+
+<div class="container">
+  <mat-card *ngIf="client">
+      <mat-card-header>
+          <img *ngIf="!client" matCardAvatar src="../../../assets/images/person-circle.svg">
+          <img *ngIf="client" matCardAvatar [src]="client?.photoURL">
+          <mat-card-title>{{client?.displayName}}</mat-card-title>
+          <mat-card-subtitle>{{client?.email}}
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item>Cancel account</button>
+                  <button mat-menu-item>Delete account</button>
+              </mat-menu>
+          </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <form class="form account">
+            <div class="flex-input" fxLayout="row" fxLayout.xs="column" fxLayoutGap="12px">
+              <mat-form-field>
+                  <mat-label>Firstname</mat-label>
+                  <input matInput [(ngModel)]="firstname" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                  <!-- <mat-error *ngIf="state.invalid">Enter your current state</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Lastname</mat-label>
+                  <input matInput [(ngModel)]="lastname" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                  <!-- <mat-error *ngIf="state.invalid">Enter your current state</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="email" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+            </mat-form-field>
+            </div>
+            <div class="flex-input" fxLayout="row" fxLayout.xs="column" fxLayoutGap="12px">
+                <mat-form-field>
+                    <mat-select placeholder="Work Pair" [(ngModel)]="work" [ngModelOptions]="{standalone: true}" name="job" [disabled]="editable.value">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let work of workPairs" [value]="work.value">{{work.viewValue}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="state.invalid">Enter your current state</mat-error> -->
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" [min]="minDOB" [max]="maxDOB" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <!-- <mat-error *ngIf="dateOfBirth.invalid">Choose your date of birth</mat-error> -->
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Country</mat-label>
+                    <mat-select [(ngModel)]="country" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let country of countries" [value]="country.name">
+                            {{country.name}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+                </mat-form-field>
+              </div>
+              <div class="flex-input" fxLayout="row" fxLayout.xs="column" fxLayoutGap="12px">
+                    <mat-form-field>
+                        <mat-label>State</mat-label>
+                        <input matInput [(ngModel)]="state" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                        <!-- <mat-error *ngIf="state.invalid">Enter your current state</mat-error> -->
+                    </mat-form-field>
+                  <mat-form-field>
+                      <mat-label>Do you have a valid passport</mat-label>
+                      <mat-select [(ngModel)]="validPass" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                          <mat-option>---</mat-option>
+                          <mat-option *ngFor="let vp of validPassport" [value]="vp.value">
+                              {{vp.viewValue}}
+                          </mat-option>
+                      </mat-select>
+                      <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Marital status</mat-label>
+                    <mat-select [(ngModel)]="mariStatus" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let ms of maritalStats" [value]="ms.value">
+                            {{ms.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="flex-input" fxLayout="row" fxLayout.xs="column" fxLayoutGap="12px">
+                <mat-form-field>
+                    <mat-label>Gender</mat-label>
+                    <mat-select [(ngModel)]="gnder" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let gd of gender" [value]="gd.value">
+                            {{gd.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="state.invalid">Enter your current state</mat-error> -->
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput [(ngModel)]="address" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                    <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" [disabled]="editable.value">
+                    <!-- <mat-error *ngIf="country.invalid">Choose your current country</mat-error> -->
+                </mat-form-field>
+            </div>
+
+                
+          </form>
+      </mat-card-content>
+      <!-- <mat-card-actions align="start">
+          <button mat-raised-button (click)="onClick" color="primary">
+            <mat-icon class="mat-18">create</mat-icon>
+          </button>
+          <button mat-raised-button (click)="onClick" color="accent">
+            <mat-icon class="mat-18">create</mat-icon>
+          </button>
+      </mat-card-actions> -->
+  </mat-card>
+
+  <button class="fab-btn" mat-fab (click)="makeNonEditable()" color="accent" *ngIf="!editable.value" matTooltip="Save profile">
+      <mat-icon class="mat-18">cloud</mat-icon>
+  </button>
+  <button class="fab-btn" mat-fab (click)="makeEditable()" color="accent" *ngIf="editable.value" matTooltip="Edit profile">
+      <mat-icon class="mat-18">edit</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,54 @@
+@import '../shared/shared.scss';
+
+header {
+    background: url('../../assets/images/rauBg.png') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+@media screen and (max-width: 650px) {
+    header {
+        background: url('../../assets/images/rauBg-small.png') no-repeat center;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+}
+
+header .nav .logo {
+    background: url('../../assets/images/rauLogo.svg') no-repeat center;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 0;
+
+    .flex-spacer {
+        flex: 1 1 auto;
+    }
+
+    .logo {
+        width: 122px;
+        height: 55px;
+        background: url('../../assets/images/rauLogo.svg') no-repeat;
+        display: inline-block;
+        align-self: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.terms {
+    margin: 12px 0 28px 0;
+    text-align: left;
+    h4 {
+        color: rgb(0, 110, 255);
+    }
+
+    p{
+        color: grey;
+    }
+}

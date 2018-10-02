@@ -1,0 +1,68 @@
+<section class="desktop">
+  <mat-horizontal-stepper linear="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Profile image upload</ng-template>
+        <form [formGroup]="firstFormGroup">
+            <div class="image-stepper" fxLayout="column" fxFlexAlign="center">
+                <div class="image" style="background: url(../assets/images/person.svg)">
+                    <input type="file" formControlName="photo" accept="image/*" (change)="photoChange($event)" #fileInput hidden>
+                    <button mat-raised-button color="primary" (click)="fileInput.click()" *ngIf="!file">
+                        <mat-icon class="mat-18">photo</mat-icon>
+                        Add Photo
+                    </button>
+                    <button mat-fab (click)="fileInput.click()" *ngIf="file" color="primary" matTooltip="change image" aria-label="change image button">
+                        <mat-icon class="mat-18">input</mat-icon>
+                    </button>
+                    
+                </div><br>
+                <mat-progress-bar mode="determinate" [value]="uploadPercentage | async" color="primary" *ngIf="uploadPercentage | async"></mat-progress-bar>
+                <br>
+                <span *ngIf="uploaded">Upload successful</span>
+                <button mat-fab (click)="onSubmit()" color="primary" matTooltip="upload image" aria-label="upload image button" [disabled]="uploadBtnDisabled">
+                    <mat-icon class="mat-18">backup</mat-icon>
+                </button>
+                <br>
+                <p>Choose a <b><i>512 x 512 less than 1mb</i></b> photo from your disk</p>
+                <button mat-raised-button matStepperNext color="primary" #continue>continue</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Payment</ng-template>
+        
+        <h4 style="color: #ff8888; font-weight: bold">Starter Payment</h4>
+        <p>Your starter payment is a fixed payment by the agencies overtime which is used a starting point for bringing you the best and latest offer made by our pairs with effortless and quality security insurance..</p>
+        <h5>Total <b>$500 USD</b></h5>
+        <div fxLayout="row" fxLayoutAlign="space-between" style="padding-top: 25px">
+            <button mat-button>make payment request</button>
+            <button mat-icon-button matStepperNext>
+                <mat-icon class="mat-18">arrow_forward</mat-icon>
+            </button>
+        </div>
+        
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div *ngIf="!emailVerifLinkSent then notVerified else verified"></div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</section>
+
+<ng-template #notVerified>
+    <div fxLayout="column" fxLayoutAlign="center center" style="padding: 24px 0">
+        <div class="verify"></div>
+        <h2 style="color: #6f6f6f;">Verify Email</h2>
+        <p style="text-align: center; margin: 12px">Please click the button below to send email verification link via your email address</p>
+        <button mat-stroked-button (click)="sendVerificationEmail()" color="primary">Send Link</button>
+    </div>
+</ng-template>
+<ng-template #verified>
+    <div fxLayout="column" fxLayoutAlign="center center" style="padding: 24px 0">
+        <div class="verified"></div>
+        <h2 style="color: #6f6f6f;">Email Verification Sent</h2>
+        <p style="text-align: center; margin: 12px">Check your mail & click the link to activate your account</p>
+        <button mat-raised-button (click)="sendVerificationEmail()" color="primary">Resend Link</button>
+    </div>
+</ng-template>

@@ -1,0 +1,101 @@
+<header>
+    <div class="container">
+        <app-nav></app-nav>
+        <div class="header-content-container">
+            <div class="content">
+                <div class="title" *ngIf="!client">
+                    <h1>Hi Guest, Welcome to RAU pair agency</h1>
+                    <span class="stroke short"></span>
+                    <h2>Respected AU pair Agency</h2>
+                </div>
+
+                <div class="title" *ngIf="client">
+                    <h1>Welcome, {{client?.displayName}}</h1>
+                    <span class="stroke short"></span>
+                    <h2>Respected AU pair Agency</h2>
+                </div>
+
+                <div class="info">
+                    <p> Become an au pair and have the time of your life, Would you like to get an
+                        authentic insight into a for.....</p>
+                </div>
+            </div>
+
+            <button class="button" *ngIf="!client">
+                <a routerLink="/auth/registration">Become an AU</a>
+            </button>
+
+            <button class="button" *ngIf="client">
+                <a routerLink="/dashboard">Dashboard</a>
+            </button>
+        </div>
+    </div>
+</header>
+
+<section id="services">
+    <div class="container">
+        <div class="section-title">
+            <h6>01</h6>
+            <span class="stroke long"></span>
+            <h2>Our Services</h2>
+        </div>
+
+        <div class="flex left">
+            <div class="image box"></div>
+
+            <div class="content">
+                <div class="title">
+                    <h3>Respected AU and what we do</h3>
+                    <span class="stroke short"></span>
+                    <p>Au pairs primarily look after children of their host families. Additionally,
+                    they help you eith light child related housework, such as washing their clothes
+                    or helping them tidying up their rooms. You should discuss your au pair's exact
+                    duties well in advance and include them in your written au pair contract.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="button">
+        <a routerLink="/services">Learn more</a>
+    </button>
+</section>
+
+<section id="testimonies">
+    <div class="container">
+        <div class="section-title">
+            <h5>02</h5>
+            <span class="stroke long"></span>
+            <h2>Success Stories</h2>
+        </div>
+
+        <div class="flex right">
+            <div class="image box"></div>
+
+            <div class="content">
+                <div class="title">
+                    <h3>Hear From An Area Director: Cultural Exchange in western Michigan.</h3>
+                    <span class="stroke short"></span>
+                    <p>Respected Au pairs Agency serves families all over the country. The backbone of our
+                    team are the local area directors who assist au paors and host families through their
+                    program years. Hear from an Area Directors about the cultural exchange experience she's
+                    sharing with au pairs in her region 
+                    --- The year is 2016, the city is Grand Rapids, Michigan. The once so-called "dying city"
+                    has been stage for ArtPrize, an incredible internationall art competition for the last 8
+                    years. Grand Rapidians and all Michiganders are very proud of this event, and they should
+                    be! It is unlike anythingthat has ever been seen. For 19 days the whole downtown area is
+                    covered with all diffent types of art. Recently the west Michigan au pairs experienced ArtPrize
+                    for themselves and they were very impressed! After watching "The Wizard of OZomeness" which was
+                    a superb street dance interpretatio.....
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="button secondary">
+        <a routerLink="/testimonies">View more</a>
+    </button>
+</section>
+
+<app-footer></app-footer>

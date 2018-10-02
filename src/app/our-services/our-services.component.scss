@@ -1,0 +1,41 @@
+@import '../shared/shared.scss';
+
+header {
+    background: url('../../assets/images/use-services_blurred.jpg');
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $primary;
+}
+
+
+
+section#service1 {
+    .container {
+        .flex {
+            padding: 4rem 0 4rem 0 !important;
+
+            .image {
+                background: url('../../assets/images/money.svg') no-repeat;
+                background-position: center;
+                background-size: contain;
+            
+            }
+        }
+    }
+}
+
+section#service2 {
+    .container {
+        .flex {
+            padding: 4rem 0 4rem 0;
+
+            .image {
+                background: url('../../assets/images/24-hours-room-service.svg') no-repeat;
+                background-position: center center;
+                background-size: contain;
+            }
+        }
+    }
+}

@@ -1,0 +1,161 @@
+<header>
+    <div class="container">
+        <div class="nav">
+            <span class="flex-spacer"></span>
+            <div class="logo" routerLink="/"></div>
+            <span class="flex-spacer"></span>
+        </div>
+    </div>
+
+    <form class="form registration" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Firstname</mat-label>
+                <input matInput placeholder="Your firstname" formControlName="firstname" required>
+                <mat-error *ngIf="firstname.invalid">Must be at least a min of 3 characters and max of 15</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Lastname</mat-label>
+                <input matInput placeholder="Your lastname" formControlName="lastname" required>
+                <mat-error *ngIf="lastname.invalid">Must be at least a min of 3 characters and max of 15</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="enter your email" formControlName="email">
+                <mat-error *ngIf="email.invalid">Must include 'letters', '@' sign and a '.'</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="Work pair" formControlName="jobtitle" [(value)]="selectedJob" required>
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let job of jobTitle" [value]="job.value">{{job.viewValue}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="jobtitle.invalid">Please select a job of your choice</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Choose your DOB" [min]="minDOB" [max]="maxDOB" formControlName="dateOfBirth" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="dateOfBirth.invalid">Choose your date of birth</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select placeholder="" [(value)]="selectedCountry" formControlName="country" required>
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let country of countries" [value]="country.name">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="country.invalid">Choose your current country</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput placeholder="enter your current state" formControlName="state" required>
+                <mat-error *ngIf="state.invalid">Enter your current state</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Do you have a valid passport?</mat-label>
+                <mat-select placeholder="" [(value)]="selectedVp" formControlName="validpassport" required>
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let vp of validPassport" [value]="vp.value">{{vp.viewValue}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="validpassport.invalid">Choose either 'Yes' or 'No'</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Marital Status</mat-label>
+                <mat-select placeholder="" [(value)]="selectedMaritalStats" formControlName="maritalstatus" required>
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let ms of maritalStats" [value]="ms.value">{{ms.viewValue}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="maritalstatus.invalid">Choose your marital status</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select placeholder="" [(value)]="selectedGender" formControlName="gnder" required>
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let gdr of gender" [value]="gdr.value">{{gdr.viewValue}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="gnder.invalid">Choose either 'male' or 'female'</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="address" formControlName="address" required>
+                <mat-error *ngIf="address.invalid">Enter a valid address</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" >
+                <mat-label>Phone number</mat-label>
+                <input ng2TelInput matInput placeholder="phone number" formControlName="phone" required type="tel">
+                <mat-error *ngIf="phone.invalid">Enter a valid phone number</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="password" formControlName="password" type="password" name="password">
+                <mat-error *ngIf="password.hasError('required')">Choose a memorable password</mat-error>
+                <mat-error *ngIf="password.hasError('minLength')">Password must be at least minimum of 6 characters</mat-error>
+                <mat-error *ngIf="password.hasError('maxLength')">Password can only contain a maximum of 12 characters</mat-error>
+                <mat-error *ngIf="password.hasError('digitCharacterRule')">Must contain at least one(1) number</mat-error>
+                <mat-error *ngIf="password.hasError('uppercaseCharacterRule')">Must have one uppercase letter</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" >
+                <mat-label>Comfirm Password</mat-label>
+                <input matInput placeholder="confirm password" formControlName="confirmPassword" type="password">
+                <mat-error *ngIf="confirmPassword.hasError('required')">Choose a memorable password</mat-error>
+                <mat-error *ngIf="confirmPassword.hasError('minLength')">Password must be at least minimum of 6 characters</mat-error>
+                <mat-error *ngIf="confirmPassword.hasError('maxLength')">Password can only contain a maximum of 12 characters</mat-error>
+                <mat-error *ngIf="confirmPassword.hasError('digitCharacterRule')">Must contain at least one(1) number</mat-error>
+                <mat-error *ngIf="confirmPassword.hasError('uppercaseCharacterRule')">Must have one uppercase letter</mat-error>
+                <!-- <mat-error *ngIf="confirmPassword.hasError('mismatchedPasswords')">Passwords mismatch</mat-error> -->
+                <mat-error *ngIf="confirmPassword.hasError('notEqual')">Passwords does not match</mat-error>
+            </mat-form-field>
+        </div>
+
+        
+        <div class="terms">
+            <h4>Terms and Conditions</h4>
+            <p>By clicking the check button below you've agreed to our <a href="#">terms and conditions</a>. Please be sure to read the terms</p>
+            <mat-checkbox formControlName="agreed" [value]="" color="accent">I agree to the terms and conditions</mat-checkbox>
+            <mat-error *ngIf="agreed.invalid">Required</mat-error>
+        </div>
+
+            
+        <!-- <button type="submit" class="button long">
+            <a href="#">
+              Create
+            </a>
+        </button> -->
+
+        <button mat-raised-button type="submit" color="primary" [disabled]="registrationForm.invalid">Create</button>
+
+        <span class="link" style="margin: 12px 0">Do you have an account? <a routerLink="/auth/login">Login</a></span>
+      
+    </form>
+</header>
+
+<div class="backdrop">
+    <span class="loader"></span>
+</div>
