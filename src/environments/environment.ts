@@ -7,15 +7,15 @@ export const environment = {
 
   // Initialize Firebase
   firestoreConfig:  {
-    apiKey: "AIzaSyBNuIXMmA4zXdYjgjQKtTrpfgiZxA4t2fU",
+    apiKey: "",
     authDomain: "respectedau.firebaseapp.com",
-    databaseURL: "https://respectedau.firebaseio.com",
+    databaseURL: "",
     projectId: "respectedau",
-    storageBucket: "respectedau.appspot.com",
-    messagingSenderId: "176962524559"
+    storageBucket: "",
+    messagingSenderId: ""
   },
 
-  stripeKey: 'pk_test_AbRJSCdzQxE7jFsyMpjm7KSz' 
+  stripeKey: '' 
 };
 
 /*
